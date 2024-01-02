@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Squid Games</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f6f8fa;
+            color: #24292e;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #24292e;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .code-sample {
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .highlight {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+
+<header>
+    <h1>Welcome To Squid Coding Games</h1>
+</header>
+
+<div class="container">
+    <p>
+        Implement solutions to simple Python code quizes to your liking and immediately get your relative benchmark.
+    </p>
+    
+<strong>Getting Started</strong>
+    <ul>
+        <li>Select one out of the <a href="games.html">available coding quizes</a></li>
+        <li>Clone the SquidGameClient repo on GitHub</li>
+        <li>Install the required dependencies using <code>pip install</code></li>
+        <li>In games directory, identify the relevant py file implementing the client for the game you selected</li>
+        <li>Implement just the <code class="highlight">def play_game(game_params : json)</code> class function</li>
+        <li>Run the Squid Game Client with command line paramters:</li>
+        <ul><code>game_client.py --username *** --password *** -game SumQwest</code></li></ul>
+    </ul>
+    
+    <div  class="code-sample">
+        <p>// Sample Code</p>
+        <pre class="highlight">
+            <code>
+@staticmethod
+def play_game(game_params : json) :
+    """
+    Takes a JSON blob of game parameters as it was received from the game.
+    Returns a JSON blob with the solution adhering to the specifics of the selected game.
+    """
+
+    solution = 
+    # return a JSON object with quiz' solution            
+    solution_pack = {
+            "id" : game_params.get("id"),
+            "quiz_specific_attribute" : str(solution)
+    }
+
+    return solution_pack
+            </code>
+        </pre>
+    </div>
+
+    <p>
+        Feel free to explore the code and contribute to the project on GitHub.
+        You can find the repository at <a href="https://github.com/your-username/your-repository" target="_blank">GitHub</a>.
+    </p>
+</div>
+
+</body>
+</html>

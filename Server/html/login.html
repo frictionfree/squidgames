@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Squid Games</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f6f8fa;
+            color: #24292e;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #24292e;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .code-sample {
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .highlight {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css" integrity="sha512-jTnbM2aDQqW9Bb5rCUrGHh7kU2GA+3MEiVWLB1cmOX+3+7Ke5x4LGU8QaJC8gFvx5SsJ4tsVv1mFNTGfdk3T/A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js" integrity="sha512-oCGNTdgB6s7OqFzAPFGDx7ziMqyMFZaOqEn5WYhlOrLFWLJq7EvldCJCDpTng00dfPYGTb2PPNTiBEFiGfJyGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+
+<header>
+    <h1>Welcome To Squid Coding Games</h1>
+</header>
+
+<div class="container">
+    <p>
+        We're so glad to see you here! We'll be so much friendlier after you login...
+    </p>
+    
+    <div class="container">
+        <div class="login-form">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+    
+                <button type="button" onclick="login()">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            // Send an HTTP GET request to authenticate
+            fetch(`/gameserver/api/v1.0/authenticate?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming the server returns a JSON object with an authentication token
+                    const authToken = data.authentication.token;
+    
+                    // Set a cookie with the authentication token
+                    //console.log('Authentication response:', authToken);
+                    document.cookie = `SquidAuthCookie=${authToken}; expires=Thu, 18 Dec 2030 12:00:00 UTC; path=/`;
+                    //console.log('Doc cookie:', document.cookie);
+                    // Optionally, you can redirect to another page after successful login
+                    window.location.href = '/html/welcome.html';
+                })
+                .catch(error => {
+                    console.error('Login failed:', error);
+                    alert('Login failed. Please check your username and password.');
+                });
+        }
+    </script>
+</div>
+
+</body>
+</html>

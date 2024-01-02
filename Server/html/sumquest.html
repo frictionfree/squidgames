@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Squid Games</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f6f8fa;
+            color: #24292e;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #24292e;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .code-sample {
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .highlight {
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/github.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>hljs.highlightAll();</script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+
+<header>
+    <h1>SumQuest</h1>
+</header>
+
+<div class="container">
+    <p>
+        Like cracking numbers? You came to right place. SumQuest presents a simple mathematical coding challenge which can be solved with a single loop and less than a dozen lines of code.
+    </p>
+    
+    <p>How does it work?</p>
+    <p>
+      Upon starting a new game you will be presented with the following challenge from the SumQuest server in JSON format:
+      </p>
+      <p style="margin-left:40px">{<br />
+      &nbsp; &#39;NumberToBreak&#39;: 8,<br />
+      &nbsp; &#39;Parts&#39;: 3,<br />
+      &nbsp; &#39;Min&#39;: 1,<br />
+      &nbsp; &#39;Max&#39;: 5,<br />
+      &nbsp; &#39;id&#39;: &#39;ec001916-6f19-43d2-ab7f-c86042b4766c&#39;<br />
+      }</p>      
+    
+      <p>The solution should be a representation of NumberToBreak as a list of exactly Parts integers {A1, A2, …, An} in the range between Min and Max such that their sum is NumberToBreak.</p>
+
+      <div id="math-formula" style="margin-left:40px">
+            \(NumberToBreak = \sum_{i=1}^{\text{Parts}} A_i\)</div>
+      
+      <!--  <div  class="code-sample"> -->
+      
+      <pre class="highlight"><code># Naive implementation...
+  @staticmethod
+  def play_game(game_params : json) :
+      """
+      Takes a JSON blob of the SumQuest game parameters as it was received from the game.
+      Returns a JSON blob with the solution adhering to the specifics of the selected game.
+      """
+      number_to_break = int(game_params.get("NumberToBreak"))
+      parts = int(game_params.get("Parts"))
+      min_threshold = int(game_params.get("Min"))
+      max_threshold = int(game_params.get("Max"))
+
+      solution = []
+      if (number_to_break > (parts * max_threshold) or number_to_break < (parts * min_threshold)) :
+          return solution
+      
+      for n in range(parts) :
+          next_number = random.randint(min_threshold, max_threshold)
+          solution.append(next_number)
+
+      # return a JSON object with quiz' solution            
+      solution_pack = {
+        "id" : game_params.get("id"),
+        "parts" : str(solution)
+      }
+  
+      return solution_pack</code></pre>
+      <!-- </div> -->
+
+      <p>Random solution payloads for the above challenge</p>
+      <p style="margin-left:40px">{<br />
+        &quot;id&quot;: &quot;ec001916-6f19-43d2-ab7f-c86042b4766c&quot;,<br />
+        &quot;parts&quot;: &quot;[1, 2, 5]&quot;<br />
+        }</p>
+      <p style="margin-left:40px">{<br />
+        &quot;id&quot;: &quot;ec001916-6f19-43d2-ab7f-c86042b4766c&quot;,<br />
+        &quot;parts&quot;: &quot;[2, 2, 4]&quot;<br />
+        }</p>
+      <p style="margin-left:40px">{<br />
+        &quot;id&quot;: &quot;ec001916-6f19-43d2-ab7f-c86042b4766c&quot;,<br />
+        &quot;parts&quot;: &quot;[2, 3, 3]&quot;<br />
+        }</p>
+      <p style="margin-left:40px">{<br />
+        &quot;id&quot;: &quot;ec001916-6f19-43d2-ab7f-c86042b4766c&quot;,<br />
+        &quot;parts&quot;: &quot;[4, 3, 1]&quot;<br />
+        }</p>
+      <p>An important part of the challenge is to make it so that the solution is completely random and not limited to a subset of the numeric field defined by the formula above.</p>
+</div>
+
+</body>
+</html>
