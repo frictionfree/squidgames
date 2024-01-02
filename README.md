@@ -16,7 +16,7 @@ To get started with Squid Games, follow these steps:
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/squid-games.git
+   git clone https://github.com/frictionfree/squidgames.git
 
 2. **Install Dependencies:**
    ```bash
