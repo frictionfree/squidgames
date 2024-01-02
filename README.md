@@ -20,7 +20,7 @@ To get started with Squid Games, follow these steps:
 
 2. **Install Dependencies:**
    ```bash
-   cd squid-games
+   cd squid-games\server
    pip install -r requirements.txt
 
 2. **Setup Database:**
@@ -30,3 +30,7 @@ To get started with Squid Games, follow these steps:
 4. **Run the Server Locally:**
    ```bash
    python server/main.py --adminDBPassword password
+
+4. **Run the Client:**
+   ```bash
+   python client/game_client.py --username name --password password
