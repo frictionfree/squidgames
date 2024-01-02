@@ -17,3 +17,16 @@ To get started with Squid Games, follow these steps:
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/your-username/squid-games.git
+
+2. **Install Dependencies:**
+   ```bash
+   cd squid-games
+   pip install -r requirements.txt
+
+2. **Setup Database:**
+   ```bash
+   TODO
+   
+4. **Run the Server Locally:**
+   ```bash
+   python server/main.py --adminDBPassword password
