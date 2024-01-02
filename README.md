@@ -23,6 +23,11 @@ To get started with Squid Games, follow these steps:
    cd squid-games\server
    pip install -r requirements.txt
 
+   Current repo assumes you'll be using MS SQL via ODBC 17 drivers. Unless you choose to deploy a different DB, you may need to follow
+   these steps to install the MS ODBC drivers:
+   https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver16
+   On Apple M1/M2 you may need to install pyodbc with https://github.com/mkleehammer/pyodbc/issues/885
+   
 2. **Setup Database:**
    ```bash
    TODO
